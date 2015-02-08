@@ -1,5 +1,5 @@
 {
-  "name": "Blob.js",
+  "name": "blob",
   "version": "1.0.0",
   "description": "Blob.js ==============",
   "main": "Blob.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fand/Blob.js"
+    "url": "https://github.com/fand/blob"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fand/Blob.js/issues"
+    "url": "https://github.com/fand/blob/issues"
   },
-  "homepage": "https://github.com/fand/Blob.js"
+  "homepage": "https://github.com/fand/blob"
 }
