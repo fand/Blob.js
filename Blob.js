@@ -193,16 +193,33 @@
 			return FakeBlobBuilder;
 		}(view));
 
-		return function(blobParts, options) {
+		var Blob = function(blobParts, options) {
 			var type = options ? (options.type || "") : "";
 			var builder = new BlobBuilder();
 			if (blobParts) {
 				for (var i = 0, len = blobParts.length; i < len; i++) {
 					builder.append(blobParts[i]);
 				}
+				for (var i = 0, len = blobParts.length; i < len; i++) {
+					if (Uint8Array && blobParts[i] instanceof Uint8Array) {
+						builder.append(blobParts[i].buffer);
+					}
+					else {
+						builder.append(blobParts[i]);
+					}
+				}
 			}
-			return builder.getBlob(type);
+			var blob = builder.getBlob(type);
+			if (!blob.slice && blob.webkitSlice) {
+				blob.slice = blob.webkitSlice;
+			}
+			return blob;
 		};
+		var getPrototypeOf = Object.getPrototypeOf || function(object) {
+			return object.__proto__;
+		};
+		Blob.prototype = getPrototypeOf(new Blob());
+		return Blob;
 	});
 
 }(typeof window !== "undefined" && window || this));
